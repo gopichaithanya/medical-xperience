@@ -11,7 +11,7 @@ The project will be developed using J2EE platform, based on MVC architecture(Mod
 = Details =
 
 The project will cover all the medical office usual activities, including:
-- Registering Appointments;
-- Patient Management;
-- Treatment Details (including Prescriptions, Symptoms, etc.);
-- Doctor help (getting all the patient history and symptoms, and suggesting possible diseases and medicines);
+* Registering Appointments;
+* Patient Management;
+* Treatment Details (including Prescriptions, Symptoms, etc.);
+* Doctor help (getting all the patient history and symptoms, and suggesting possible diseases and medicines);
