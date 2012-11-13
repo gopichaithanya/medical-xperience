@@ -20,3 +20,8 @@ The project will cover all the medical office usual activities, including:
 - Treatment Details (including Prescriptions, Symptoms, etc.);
 
 - Doctor help (getting all the patient history and symptoms, and suggesting possible diseases and medicines);
+
+
+<wiki:gadget url="http://www.ohloh.net/p/gwt/widgets/project_basic_stats.xml" height="220" border="1" />
+
+<wiki:gadget url="http://www.ohloh.net/p/gwt/widgets/project_users.xml" height="100" border="0" />
