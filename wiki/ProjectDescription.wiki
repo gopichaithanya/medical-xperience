@@ -1,0 +1,17 @@
+#summary One-sentence summary of this page.
+#labels Featured,Phase-Requirements
+
+Project Description
+
+= Introduction =
+
+This project will deliver an open source software to manage a medical office, appointments, and all related activities.
+The project will be developed using J2EE platform, based on MVC architecture(Model-View-Controller) . Some technologies that will be used are: Hibernate (Persistance) and Java Server Faces (View).
+
+= Details =
+
+The project will cover all the medical office usual activities, including:
+- Registering Appointments;
+- Patient Management;
+- Treatment Details (including Prescriptions, Symptoms, etc.);
+- Doctor help (getting all the patient history and symptoms, and suggesting possible diseases and medicines);
