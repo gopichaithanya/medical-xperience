@@ -27,8 +27,16 @@ public class Appointment {
 	private List<Symptom> listSymptoms = new ArrayList<Symptom>();
 	@OneToMany
 	private List<Prescription> listPrescription = new ArrayList<Prescription>();
+	@OneToMany
+	private List<Disease> listDisease = new ArrayList<Disease>();
 	
 	
+	public List<Disease> getListDisease() {
+		return listDisease;
+	}
+	public void setListDisease(List<Disease> listDisease) {
+		this.listDisease = listDisease;
+	}
 	public int getId() {
 		return id;
 	}

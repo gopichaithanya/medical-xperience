@@ -19,5 +19,6 @@
         <mapping class="model.Medicine"/>
         <mapping class="model.Prescription"/>
         <mapping class="model.Appointment"/>
+        <mapping class="model.Disease"/>
     </session-factory>
 </hibernate-configuration>

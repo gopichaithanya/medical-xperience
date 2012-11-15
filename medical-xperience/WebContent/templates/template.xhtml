@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Template</title>
+</h:head>
+<h:body>
+	<table>
+		<tr>
+			<td><ui:insert name="header">
+					<h1>Page Header</h1>
+				</ui:insert></td>
+		</tr>
+		<tr>
+			<td><ui:insert name="menu">
+					<h2>Menu</h2>
+				</ui:insert></td>
+			<td><ui:insert name="main">
+					<h2>Main</h2>
+				</ui:insert></td>
+		</tr>
+		<tr>
+			<td><ui:insert name="footer">
+				<h5>Developed by RicardoReimão</h5>
+			</ui:insert>
+			</td>
+		</tr>
+	</table>
+</h:body>
+</html>
