@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+			<h:outputText value="Please, log in" />
+			<br/>
+			<br/>
+			<h:form>
+			<p:growl id="messages"/>
+				<table>
+				<tr>
+				<td align="left"><h:outputText value="User:" /></td>
+				<td><p:inputText id="user" value="#{loginController.user.user}"/></td>
+				</tr><tr>
+				<td align="left"><h:outputText value="Password:"/></td>
+				<td><p:password id="password" value="#{loginController.user.password}"/></td>
+				</tr>
+				</table>
+				<p:commandButton value="Login" icon="ui-icon-check" action="#{loginController.loginValidator(loginController.user.user,loginController.user.password)}" update="messages"></p:commandButton>
+			</h:form>
+		</ui:define>
+		<ui:define name="menu">
+			<h:form>
+				<p:menu>
+					<p:menuitem value="Register" icon="ui-icon-person"></p:menuitem>
+					<p:menuitem value="Contact" icon="ui-icon-mail-closed"></p:menuitem>
+					<p:menuitem value="About" icon="ui-icon-star"></p:menuitem>
+				</p:menu>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

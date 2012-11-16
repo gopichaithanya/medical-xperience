@@ -21,6 +21,7 @@ public class Person {
 	private String password;
 	private String cpf;
 	private String phone;
+	private int permission;
 	
 	
 	
@@ -71,6 +72,12 @@ public class Person {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public int getPermission() {
+		return permission;
+	}
+	public void setPermission(int permission) {
+		this.permission = permission;
 	}
 	
 	
