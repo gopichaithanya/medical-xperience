@@ -1,7 +1,6 @@
 package util;
 
-import model.Person;
-import model.PersonDAO;
+import model.ApplicationLogDAO;
 
 import org.hibernate.Session;
 
@@ -32,8 +31,7 @@ public class TestConection {
 	    PersonDAO.save(p);
 	    */
 		session.beginTransaction();
-		Person p = PersonDAO.validateLogin("admin", "admin");
-		System.out.println(p.getFirstName());
+		ApplicationLogDAO.createLog("TestEnvirorment", "admin", "127.0.0.1", "Creating Table", "Creating and Validating Log Table");
 		session.getTransaction().commit();
 		System.out.println("SALVO");
 	}

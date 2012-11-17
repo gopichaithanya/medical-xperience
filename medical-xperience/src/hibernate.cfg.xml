@@ -21,5 +21,6 @@
         <mapping class="model.Appointment"/>
         <mapping class="model.Disease"/>
         <mapping class="model.LoginHistory"/>
+        <mapping class="model.ApplicationLog"/>
     </session-factory>
 </hibernate-configuration>
