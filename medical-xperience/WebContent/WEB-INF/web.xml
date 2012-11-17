@@ -12,15 +12,28 @@
   <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
   <param-value>resources.application</param-value>
  </context-param>
+ <!-- Primefaces Theme -->
+ <context-param>
+  <param-name>primefaces.THEME</param-name>
+  <param-value>south-street</param-value>
+ </context-param>
  <filter>
   <description>Filter that create a session to persist</description>
   <display-name>RequestSessionFilter</display-name>
   <filter-name>RequestSessionFilter</filter-name>
   <filter-class>util.RequestSessionFilter</filter-class>
  </filter>
+ <filter>
+  <filter-name>LoggedFilter</filter-name>
+  <filter-class>view.LoginPageFilter</filter-class>
+ </filter>
  <filter-mapping>
   <filter-name>RequestSessionFilter</filter-name>
   <url-pattern>*.jsf</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>LoggedFilter</filter-name>
+  <url-pattern>/index.jsf</url-pattern>
  </filter-mapping>
  <listener>
   <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
@@ -37,9 +50,4 @@
  <welcome-file-list>
   <welcome-file>index.jsf</welcome-file>
  </welcome-file-list>
- <!-- Primefaces Theme -->
- <context-param>
-	<param-name>primefaces.THEME</param-name>
-	<param-value>south-street</param-value>
-</context-param>
 </web-app>

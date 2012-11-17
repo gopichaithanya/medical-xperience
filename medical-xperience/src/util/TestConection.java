@@ -1,5 +1,8 @@
 package util;
 
+import model.Person;
+import model.PersonDAO;
+
 import org.hibernate.Session;
 
 
@@ -14,21 +17,24 @@ public class TestConection {
 	public static void main (String[] args){
 		Session session = null;
 		
-		try{
-			System.out.println("Antes de abrir a sessão");
-		session = HibernateUtil.getSession().openSession();
-		System.out.println("Depois de abrir a sessao");
-		}catch (Exception e){
-			System.out.println("Exception:");
-			System.out.print(e);
-		}finally{
-			if (session != null){
-				if (session.getTransaction().isActive()){
-					session.getTransaction().rollback();
-				}
-				session.close();
-			}
-		}
-		
+		session = HibernateUtil.getSession().getCurrentSession();
+		/*
+		session.beginTransaction();
+	    Person p = new Person();
+	    p.setCpf("123.123.123-64");
+	    p.setEmail("admin@medicalxperirence.com");
+	    p.setFirstName("Administrator");
+	    p.setLastName("1");
+	    p.setPassword("admin");
+	    p.setPermission(0);
+	    p.setPhone("+55 19 8811-1122");
+	    p.setUser("admin");
+	    PersonDAO.save(p);
+	    */
+		session.beginTransaction();
+		Person p = PersonDAO.validateLogin("admin", "admin");
+		System.out.println(p.getFirstName());
+		session.getTransaction().commit();
+		System.out.println("SALVO");
 	}
 }

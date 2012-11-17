@@ -40,7 +40,7 @@
                                 	<p:menuitem value="Symptoms" icon="ui-icon-gear"/>
                                 	<p:menuitem value="Prescriptions" icon="ui-icon-gear"/>
                                 </p:submenu>
-                                	<p:menuitem value="Logout" actionListener="#{menu.logout()}" update="messages" icon="ui-icon-circle-close"/>
+                                	<p:menuitem value="Logout" action="#{loginController.logout()}" update="messages" icon="ui-icon-circle-close"/>
                             </p:menu>
                         </h:form>
                     </ui:insert>
@@ -53,7 +53,11 @@
                 
                 <p:layoutUnit position="south">
                 	<ui:insert name="footer">
-                		Developed by Ricardo Reimao
+                		<h:outputText value="You are logged as: " />
+                		<h:outputText value="#{loginController.user.user}" /><br/>
+                	</ui:insert>
+                	<ui:insert name="credits">
+                		<h:outputText value="Developed by Ricardo Reimao" />
                 	</ui:insert>
                 </p:layoutUnit>  
             </p:layout>  
