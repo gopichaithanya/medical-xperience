@@ -15,6 +15,7 @@ public class ApplicationLog {
 	private String fromUser;
 	private String ip;
 	private String action;
+	private int severity; // 0 - Critical  | 5 - Info
 	private String log_message;
 	private Date timestamp;
 	
@@ -61,6 +62,12 @@ public class ApplicationLog {
 	}
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+	public int getSeverity() {
+		return severity;
+	}
+	public void setSeverity(int severity) {
+		this.severity = severity;
 	}
 	
 	

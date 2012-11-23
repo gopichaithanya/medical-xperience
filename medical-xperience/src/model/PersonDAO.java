@@ -39,8 +39,18 @@ public class PersonDAO {
 	public static void save(Person p){
 		//TODO Fazer Try-Catch ou tirar a transação
 		Session session = HibernateUtil.getSession().getCurrentSession();
-		session.beginTransaction();
 		session.save(p);
-		session.getTransaction().commit();
+	}
+	
+	public static List<Patient> listPatient(){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Patient> list = (List<Patient>) session.createCriteria(Patient.class).list();
+		return list;
+	}
+	
+	public static void remove(Person p){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		session.delete(p);
 	}
 }

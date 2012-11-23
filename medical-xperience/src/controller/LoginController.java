@@ -51,6 +51,7 @@ public class LoginController {
 			// prints a error message, user/password unknown
 			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or Password!", null);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+			this.user = new Person();
 			this.setLogged(false);
 			return null;
 		}
@@ -64,18 +65,19 @@ public class LoginController {
 		this.user = user;
 	}
 	
-	public String logout() throws Throwable {
+	public static String logout(LoginController current) throws Throwable {
 		
 		//TODO: Collect the correct IP data
 		// store the logoff data
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-		LoginHistoryDAO.newLogoff(user.getUser(), request.getRemoteAddr());
+		LoginHistoryDAO.newLogoff(current.user.getUser(), request.getRemoteAddr());
 
 		// Reseting the session user
-		this.user = new Person();
-		this.setLogged(false);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		current.user = new Person();
+		current.setLogged(false);
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		session.removeAttribute("USERID");
 
 		// Send a Logoff Message
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "You Logged Off", null);

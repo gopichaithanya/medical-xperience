@@ -32,15 +32,25 @@ public class LoginPageFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		
-		HttpServletRequest sessionrequest= (HttpServletRequest)request;
-		String url = "/login.jsf";
-		if (!LoginController.isLogged(sessionrequest)){
-			request.getRequestDispatcher(url).forward(request, response);
-			return;
-		} else {
-			chain.doFilter(request, response);
-		}
 		
+		String path = ((HttpServletRequest) request).getServletPath();
+		if (excludeFromFilter(path)) { //Verify if is a page excluded from filter
+			
+			chain.doFilter(request, response); //proceed with request
+			
+			
+		}else{ //if is not a page excluded
+			
+			HttpServletRequest sessionrequest= (HttpServletRequest)request;
+			String url = "/login.jsf";
+			if (!LoginController.isLogged(sessionrequest)){
+				request.getRequestDispatcher(url).forward(request, response);
+				return;
+			} else {
+				chain.doFilter(request, response);
+			}
+			
+		}
 	}
 
 	@Override
@@ -48,5 +58,15 @@ public class LoginPageFilter implements Filter{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	//List pages that are excluded from this filter
+	private boolean excludeFromFilter(String path) {
+	      if (path.startsWith("/login.jsf")) {  // add more page to exclude here
+	    	  return true; 
+	      }else{
+	    	  return false;
+	      }
+	   }
 
 }

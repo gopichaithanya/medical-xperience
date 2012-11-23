@@ -31,7 +31,7 @@ public class TestConection {
 	    PersonDAO.save(p);
 	    */
 		session.beginTransaction();
-		ApplicationLogDAO.createLog("TestEnvirorment", "admin", "127.0.0.1", "Creating Table", "Creating and Validating Log Table");
+		ApplicationLogDAO.createLog("TestEnvirorment", "admin", "127.0.0.1", "Creating Table", "Creating and Validating Log Table",5);
 		session.getTransaction().commit();
 		System.out.println("SALVO");
 	}

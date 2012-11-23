@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+		<h:form id="PatientInput">
+			<h:panelGrid columns="2" id="panel" cellpadding="5">
+			<h:outputText value="First Name*"/>
+			<p:inputText value="#{patientController.patient.firstName}" maxlength="30" required="true" label="First Name"/>
+			
+			<h:outputText value="Last Name*"/>
+			<p:inputText value="#{patientController.patient.lastName}" maxlength="30" required="true" label="Last Name"/>
+			
+			<h:outputText value="CPF*"/>
+			<p:inputMask value="#{patientController.patient.cpf}" mask="999.999.999-99" required="true" label="CPF"/>
+			
+			<h:outputText value="User"/>
+			<p:inputText value="#{patientController.patient.user}" maxlength="20"/>
+			
+			<h:outputText value="Phone"/> 
+			<p:inputMask  value="#{patientController.patient.phone}" mask="(99) 9999-9999?9"/>
+			
+			<h:outputText value="Email"/> 
+			<p:inputText id="email" value="#{patientController.patient.email}" label="Email" validatorMessage="Email: Email not valid">
+			    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+			
+			<h:outputText value="BirthDate"/>
+			<p:calendar showButtonPanel="true" value="#{patientController.patient.birthDate}"/>
+			
+			<h:outputText value="Password"/>
+			<p:password id="pwd1" match="pwd2" label="Password" feedback="true" value="#{patientController.patient.password}"/>
+			
+			<h:outputText value="Confirm Password"/>
+			<p:password id="pwd2" label="Password Confirmation" value="#{patientController.patient.password}"/>
+			
+			</h:panelGrid>
+			<p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true"/> 
+		<p:commandButton update="panel" value="Save" action="#{patientController.createPatient()}"/>
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

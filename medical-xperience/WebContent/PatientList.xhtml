@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+			<h:form id="form">
+			<p:growl id="messages" showDetail="true"/>  
+			
+			
+			<p:dataTable id="listPatient" var="patient" value="#{patientController.listPatient()}" editable="true"
+				paginator="true" rows="25" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"  >
+            <f:facet name="header">Patients</f:facet>
+            
+            <p:ajax event="rowEdit" listener="#{patientController.onEdit}" update=":form:messages"/>
+            <p:ajax event="rowEditCancel" listener="#{patientController.onCancel}" update=":form:messages"/>
+            
+            <p:column headerText="ID">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.id}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<h:outputText value="#{patient.id}" />
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+        
+            <p:column headerText="First Name">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.firstName}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<h:inputText maxlength="30" required="true" value="#{patient.firstName}" />
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Last Name">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.lastName}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<h:inputText maxlength="30" required="true" value="#{patient.lastName}" />
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            
+            <p:column headerText="CPF">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.cpf}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<p:inputMask value="#{patientController.patient.cpf}" mask="999.999.999-99" required="true" label="CPF"/>
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Email">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.email}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<p:inputText id="email" value="#{patient.email}" label="Email" validatorMessage="Email: Email not valid">
+					    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</p:inputText>
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Phone">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.phone}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<p:inputMask  value="#{patientController.patient.phone}" mask="(99) 9999-9999?9"/>
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            <p:column headerText="Birthday">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.birthDate}">
+            			<f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+            		</h:outputText>
+            	</f:facet>
+            	<f:facet name="input">
+            		<p:calendar showButtonPanel="true" value="#{patient.birthDate}" />
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+            
+            
+            <p:column headerText="Username">
+            	<p:cellEditor>
+            	<f:facet name="output">
+            		<h:outputText value="#{patient.user}" />
+            	</f:facet>
+            	<f:facet name="input">
+            		<h:inputText maxlength="20" value="#{patient.user}" />
+            	</f:facet>
+            	</p:cellEditor>
+            </p:column>
+               
+            <p:column headerText="Options">
+            	<p:rowEditor/>
+            	<p:commandLink actionListener="#{patientController.deletePatient(patient)}" update="listPatient"> x </p:commandLink>
+            </p:column>
+            </p:dataTable>
+            </h:form>
+		</ui:define>
+	</ui:composition>
+</html>

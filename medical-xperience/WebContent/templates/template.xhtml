@@ -30,8 +30,8 @@
                                     <p:menuitem value="Calendar" icon="ui-icon-calendar" />
                                 </p:submenu>
                                 <p:submenu label="Patients">
-                                	<p:menuitem value="New Patient" icon="ui-icon-document"/>
-                                	<p:menuitem value="List Patients" icon="ui-icon-contact"/>
+                                	<p:menuitem value="New Patient" action="NewPatient" icon="ui-icon-document"/>
+                                	<p:menuitem value="List Patients" action="PatientList" icon="ui-icon-contact"/>
                                 </p:submenu>
                                 <p:submenu label="Admin">
                                     <p:menuitem value="Users" icon="ui-icon-person"/>
@@ -40,7 +40,7 @@
                                 	<p:menuitem value="Symptoms" icon="ui-icon-gear"/>
                                 	<p:menuitem value="Prescriptions" icon="ui-icon-gear"/>
                                 </p:submenu>
-                                	<p:menuitem value="Logout" action="#{loginController.logout()}" update="messages" icon="ui-icon-circle-close"/>
+                                	<p:menuitem value="Logout" action="#{loginController.logout(loginController)}" update="messages" icon="ui-icon-circle-close"/>
                             </p:menu>
                         </h:form>
                     </ui:insert>
