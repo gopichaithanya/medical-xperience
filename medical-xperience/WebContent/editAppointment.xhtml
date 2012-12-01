@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+		<h:form id="editAppointment">
+				<h:panelGrid columns="2" id="panel" cellpadding="5">
+				<h:outputText value="Date"/>
+				<p:calendar label="Date" showButtonPanel="true" value="#{appointmentController.appoitment.date}" pattern="MM/dd/yyyy HH:mm" timeZone="GMT -2" required="true"/>
+				
+				<h:outputText value="Patient"/>
+				<p:selectOneMenu value="#{appointmentController.appoitment.patient}" converter="PatientConverter" panelStyle="width:150px"  
+		                         effect="fade" var="p" style="width:160px" filter="true"  filterMatchMode="startsWith" required="true">  
+		            <!-- <f:selectItem itemLabel="Select One" itemValue=""/>  -->  
+		            <f:selectItems value="#{patientController.listPatient()}" var="patient" itemLabel="#{patient.firstName} #{patient.lastName}"  itemValue="#{patient}"/>    
+		  
+		            <p:column>  
+		               #{p.firstName} #{p.lastName} 
+		            </p:column>  
+		        </p:selectOneMenu>  
+				
+				
+				<h:outputText value="Doctor"/>
+				<p:selectOneMenu value="#{appointmentController.appoitment.doctor}" panelStyle="width:150px"  
+		                         effect="fade" var="d" style="width:160px" converter="DoctorConverter" filter="true" filterMatchMode="startsWith" >  
+		            <!-- <f:selectItem itemLabel="Select One" itemValue="" /> --> 
+		            <f:selectItems value="#{doctorController.listDoctors()}" var="doctor" itemLabel="#{doctor.firstName} #{doctor.lastName}" itemValue="#{doctor}"/>    
+		  
+		            <p:column>  
+		               #{d.firstName} #{d.lastName} 
+		            </p:column>  
+		        </p:selectOneMenu>  
+
+
+				<h:outputText value="Comments"/>
+				<p:inputText value="#{appointmentController.appoitment.comments}"/>
+				
+			</h:panelGrid>
+			<p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true"/> 
+			<p:commandButton update="panel" value="Save" action="#{appointmentController.updateAppointment()}"/>
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

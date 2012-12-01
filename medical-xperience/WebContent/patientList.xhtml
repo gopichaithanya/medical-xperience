@@ -115,7 +115,7 @@
                
             <p:column headerText="Options">
             	<p:rowEditor/>
-            	<p:commandLink actionListener="#{patientController.deletePatient(patient)}" update="listPatient"> x </p:commandLink>
+            	<p:commandLink actionListener="#{patientController.deletePatient(patient, loginController.user.user)}" update="listPatient"> x </p:commandLink>
             </p:column>
             </p:dataTable>
             </h:form>

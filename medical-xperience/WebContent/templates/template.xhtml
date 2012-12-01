@@ -14,7 +14,7 @@
     </h:head>
     <h:body>
         <div align="center">
-            <p:layout style="min-width:1020px;max-width:1020px;min-height:700px">  
+            <p:layout style="min-width:1020px;max-width:1020px;min-height:800px" >  
                 <p:layoutUnit position="north" size="170">  
                     <h:graphicImage url="/images/banner.jpg" />
                 </p:layoutUnit>  
@@ -25,13 +25,13 @@
                         <p:growl id="messages"/>
                             <p:menu style="width: 200px">
                                 <p:submenu label="Appointments">
-                                    <p:menuitem value="New Appointment" icon="ui-icon-document" />
-                                    <p:menuitem value="List Appointments" icon="ui-icon-contact" />  
-                                    <p:menuitem value="Calendar" icon="ui-icon-calendar" />
+                                    <p:menuitem value="New Appointment" action="newAppointment" icon="ui-icon-document" />
+                                    <p:menuitem value="List Appointments" action="appointmentList" icon="ui-icon-contact" />  
+                                    <p:menuitem value="Schedule" action="#{scheduleController.refreshSchedule()}" icon="ui-icon-calendar" />
                                 </p:submenu>
                                 <p:submenu label="Patients">
-                                	<p:menuitem value="New Patient" action="NewPatient" icon="ui-icon-document"/>
-                                	<p:menuitem value="List Patients" action="PatientList" icon="ui-icon-contact"/>
+                                	<p:menuitem value="New Patient" action="newPatient" icon="ui-icon-document"/>
+                                	<p:menuitem value="List Patients" action="patientList" icon="ui-icon-contact"/>
                                 </p:submenu>
                                 <p:submenu label="Admin">
                                     <p:menuitem value="Users" icon="ui-icon-person"/>

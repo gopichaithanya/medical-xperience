@@ -53,4 +53,22 @@ public class PersonDAO {
 		Session session = HibernateUtil.getSession().getCurrentSession();
 		session.delete(p);
 	}
+	
+	public static Patient getPatient (int ID){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		return (Patient) session.load(Patient.class, ID);
+	}
+	
+	public static Doctor getDoctor (int ID){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		return (Doctor) session.load(Doctor.class, ID);
+	}
+	
+	public static List<Doctor> listDoctor(){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Doctor> list = (List<Doctor>) session.createCriteria(Doctor.class).list();
+		return list;
+	}
+	
 }

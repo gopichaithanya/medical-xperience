@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+			<h:form id="form">
+			<p:growl id="messages" showDetail="true"/>  
+			
+			
+			<p:dataTable id="listAppointment" var="appointment" sortBy="#{appointmentController.appoitment.date}" value="#{appointmentController.list()}" editable="true"
+				paginator="true" rows="25" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				emptyMessage="No Appointments found with given criteria">
+			
+			<f:facet name="header">Appointments</f:facet>
+			
+			<p:column id="Date" filterBy="#{appointment.date}" headerText="Date" filterMatchMode="contains">
+				<h:outputText value="#{appointment.date}">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-2"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column id="Patient" filterBy="#{appointment.patient.firstName} #{appointment.patient.lastName}" headerText="Patient" filterMatchMode="contains">
+				<h:outputText value="#{appointment.patient.firstName} #{appointment.patient.lastName}" />
+			</p:column>
+			
+			<p:column id="Doctor" filterBy="#{appointment.doctor.firstName} #{appointment.doctor.lastName}" headerText="Doctor" filterMatchMode="contains">
+				<h:outputText value="#{appointment.doctor.firstName} #{appointment.doctor.lastName}" />
+			</p:column>
+			
+			<p:column id="Edit" headerText="Actions">
+				<p:commandLink action="#{appointmentController.editAppointment(appointment)}">Edit</p:commandLink>
+			</p:column>
+						
+			</p:dataTable>
+
+            </h:form>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -46,8 +46,10 @@ public class PatientController {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
-	public static String deletePatient(Patient p){
+	public static String deletePatient(Patient p, String user){
 		PersonDAO.remove(p);
-		return "PatientList";
+		//TODO: Use the logger;
+		//ApplicationLogDAO.createLog("PatientList", user, "127.0.0.1", "Patient Deleted", "The user "+p.getUser()+" has been deleted!", 3);
+		return "patientList";
 	}
 }

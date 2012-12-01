@@ -7,6 +7,10 @@ import javax.persistence.*;
 @Entity
 public class Employee extends Person {
 	
+	/**
+	 * Just how was recommended by eclipse
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date admissionDate;
 	private String position;
 	private String shift;

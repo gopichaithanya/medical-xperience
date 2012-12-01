@@ -60,9 +60,13 @@ public class LoginPageFilter implements Filter{
 	}
 	
 	
-	//List pages that are excluded from this filter
+	/**
+	 * Method that exclude some pages from the login filter.
+	 * @param path related with HTTP request, will be used to verify if the page is allowed without the filter
+	 * @return true if is one of pages permitted, false if not.
+	 */
 	private boolean excludeFromFilter(String path) {
-	      if (path.startsWith("/login.jsf")) {  // add more page to exclude here
+	      if (path.startsWith("/login.jsf") || path.startsWith("/template.jsf")) {  // add more page to exclude here
 	    	  return true; 
 	      }else{
 	    	  return false;
