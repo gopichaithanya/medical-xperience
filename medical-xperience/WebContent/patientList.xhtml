@@ -11,13 +11,11 @@
 			<p:growl id="messages" showDetail="true"/>  
 			
 			
-			<p:dataTable id="listPatient" var="patient" value="#{patientController.listPatient()}" editable="true"
+			<p:dataTable id="listPatient" var="patient" value="#{patientController.listPatient()}"
 				paginator="true" rows="25" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"  >
             <f:facet name="header">Patients</f:facet>
             
-            <p:ajax event="rowEdit" listener="#{patientController.onEdit}" update=":form:messages"/>
-            <p:ajax event="rowEditCancel" listener="#{patientController.onCancel}" update=":form:messages"/>
-            
+   
             <p:column headerText="ID">
             	<p:cellEditor>
             	<f:facet name="output">
@@ -114,8 +112,8 @@
             </p:column>
                
             <p:column headerText="Options">
-            	<p:rowEditor/>
-            	<p:commandLink actionListener="#{patientController.deletePatient(patient, loginController.user.user)}" update="listPatient"> x </p:commandLink>
+            	<p:commandLink action="#{patientController.editExistingPatient(patient)}" ajax="false"> Edit </p:commandLink>
+            	<p:commandLink actionListener="#{patientController.deletePatient(patient, loginController.user.user)}" update="listPatient"> Delete </p:commandLink>
             </p:column>
             </p:dataTable>
             </h:form>

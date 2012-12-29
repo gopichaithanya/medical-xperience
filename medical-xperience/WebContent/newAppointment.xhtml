@@ -42,7 +42,7 @@
 				<p:inputText value="#{appointmentController.appoitment.comments}"/>
 			</h:panelGrid>
 			<p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true"/> 
-			<p:commandButton update="panel" value="Save" action="#{appointmentController.saveAppointment()}"/>
+			<p:commandButton update="panel" value="Save" action="#{appointmentController.saveAppointment()}" ajax="false"/>
 		</h:form>
 		</ui:define>
 	</ui:composition>

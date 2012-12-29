@@ -29,7 +29,7 @@ public class AppointmentController{
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Appointment Saved!", null);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		this.appoitment = new Appointment();
-		return "schedule";
+		return "appointmentList";
 	}
 	
 	

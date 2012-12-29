@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+		<h:form id="editUser">
+			<h:panelGrid columns="2" id="panel" cellpadding="5">
+		
+			<h:outputText value="ID" />
+			<h:outputText value="#{userController.person.id}" />
+			
+			<h:outputText value="First Name*"/>
+			<p:inputText value="#{userController.person.firstName}" maxlength="30" required="true" label="First Name"/>
+				
+			<h:outputText value="Last Name*"/>
+			<p:inputText value="#{userController.person.lastName}" maxlength="30" required="true" label="Last Name"/>
+			
+			<h:outputText value="CPF*"/>
+			<p:inputMask value="#{userController.person.cpf}" mask="999.999.999-99" required="true" label="CPF"/>
+			
+			<h:outputText value="User"/>
+			<p:inputText value="#{userController.person.user}" maxlength="20"/>
+			
+			<h:outputText value="Phone"/> 
+			<p:inputMask  value="#{userController.person.phone}" mask="(99) 9999-9999?9"/>
+			
+			<h:outputText value="Email"/> 
+			<p:inputText id="email" value="#{userController.person.email}" label="Email" validatorMessage="Email: Email not valid">
+			    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+			
+				
+			</h:panelGrid>
+			<p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true"/> 
+			<p:commandButton update="panel" value="Save" action="#{userController.updateUser()}" ajax="false"/>
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

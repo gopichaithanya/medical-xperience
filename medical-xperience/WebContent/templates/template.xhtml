@@ -27,14 +27,14 @@
                                 <p:submenu label="Appointments">
                                     <p:menuitem value="New Appointment" action="newAppointment" icon="ui-icon-document" />
                                     <p:menuitem value="List Appointments" action="appointmentList" icon="ui-icon-contact" />  
-                                    <p:menuitem value="Schedule" action="#{scheduleController.refreshSchedule()}" icon="ui-icon-calendar" />
+                                    <p:menuitem value="Schedule" action="#{scheduleController.refreshSchedule()}" icon="ui-icon-calendar" ajax="false"/>
                                 </p:submenu>
                                 <p:submenu label="Patients">
-                                	<p:menuitem value="New Patient" action="newPatient" icon="ui-icon-document"/>
+                                	<p:menuitem value="New Patient" action="#{patientController.newPatientScreen()}" icon="ui-icon-document"/>
                                 	<p:menuitem value="List Patients" action="patientList" icon="ui-icon-contact"/>
                                 </p:submenu>
                                 <p:submenu label="Admin">
-                                    <p:menuitem value="Users" icon="ui-icon-person"/>
+                                    <p:menuitem value="Users" action="userList" icon="ui-icon-person"/>
                                 	<p:menuitem value="Medicines" icon="ui-icon-gear"/>
                                 	<p:menuitem value="Diseases" icon="ui-icon-gear"/>
                                 	<p:menuitem value="Symptoms" icon="ui-icon-gear"/>

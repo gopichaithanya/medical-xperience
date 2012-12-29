@@ -41,7 +41,7 @@
 				
 			</h:panelGrid>
 			<p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true"/> 
-			<p:commandButton update="panel" value="Save" action="#{appointmentController.updateAppointment()}"/>
+			<p:commandButton update="panel" value="Save" action="#{appointmentController.updateAppointment()}" ajax="false"/>
 		</h:form>
 		</ui:define>
 	</ui:composition>

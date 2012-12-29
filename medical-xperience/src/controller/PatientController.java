@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
@@ -13,7 +13,7 @@ import model.Patient;
 import model.PersonDAO;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PatientController {
 	private Patient patient = new Patient();
 
@@ -32,19 +32,28 @@ public class PatientController {
 		return "patientList";
 	}
 	
+	public String updatePatient(){
+		PersonDAO.update(this.patient);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Patient Updated!", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		return "patientList";
+	}
+	
+	public String editExistingPatient(Patient p){
+		System.out.println("OLA!");
+		this.patient = p;
+		return "editPatient";
+	}
+	
+	public String newPatientScreen(){
+		this.patient = new Patient();
+		return "newPatient";
+	}
+	
 	public List<Patient> listPatient(){
 		return PersonDAO.listPatient();
 	}
 	
-	public void onEdit(RowEditEvent event){
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Patient Edited!", ((Patient)event.getObject()).getUser());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-	
-	public void onCancel(RowEditEvent event){
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Canceled!", ((Patient)event.getObject()).getUser());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
 	
 	public static String deletePatient(Patient p, String user){
 		PersonDAO.remove(p);

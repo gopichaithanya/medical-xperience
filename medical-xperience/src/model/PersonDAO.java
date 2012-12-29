@@ -71,4 +71,9 @@ public class PersonDAO {
 		return list;
 	}
 	
+	public static void update(Person p){
+		Session session = HibernateUtil.getSession().getCurrentSession();
+		session.update(p);
+	}
+	
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="main">
+			<h:form id="form">
+			<p:growl id="messages" showDetail="true"/>  
+			
+			
+			<p:dataTable id="userList" var="user" sortBy="#{userController.person.firstName} #{userController.person.lastName}" value="#{userController.list()}" editable="true"
+				paginator="true" rows="25" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				emptyMessage="No Users found with given criteria">
+            
+            <f:facet name="header"> Users </f:facet>
+            
+            <p:column id="id" headerText="ID" filterBy="#{user.id}" filterMatchMode="exact">
+            		<h:outputText value="#{user.id}" />
+            </p:column>
+            
+        
+            <p:column id="fullname" filterBy="#{user.firstName} #{user.lastName}" headerText="Full Name" filterMatchMode="contains">
+				<h:outputText value="#{user.firstName} #{user.lastName}" />
+			</p:column>
+           
+            <p:column id="CPF" headerText="CPF" filterBy="#{user.cpf}" filterMatchMode="contains">
+            		<h:outputText value="#{user.cpf}" />
+            </p:column>
+            
+            <p:column id="email" headerText="Email" filterBy="#{user.email}" filterMatchMode="contains">
+            		<h:outputText value="#{user.email}" />
+            </p:column>
+            
+            <p:column id="Phone" headerText="Phone" filterBy="#{user.phone}" filterMatchMode="contains">
+            		<h:outputText value="#{user.phone}" />
+            </p:column>
+            
+            <p:column id="user" headerText="Username" filterBy="#{user.user}" filterMatchMode="contains">
+            		<h:outputText value="#{user.user}" />
+            </p:column>
+               
+            <p:column id="options" headerText="Options">
+            	<p:commandLink action="#{userController.editUser(user)}" ajax="false"> Edit </p:commandLink>
+            	<p:commandLink actionListener="#{userController.deleteUser(user, loginController.user.user)}" update="userList"> Delete </p:commandLink>
+            </p:column>
+            </p:dataTable>
+            <br/>
+            <p:commandButton icon="ui-icon-document" action="#{userController.newUserScreen()}" value="New User"/>
+            </h:form>
+		</ui:define>
+	</ui:composition>
+</html>
